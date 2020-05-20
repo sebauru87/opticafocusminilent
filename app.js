@@ -16,7 +16,7 @@ app.get("*", function(req, res){
     res.send("Pagina no encontrada");
 });
 
-app.listen(3000, function(req, res){
+app.listen(process.env.PORT || 3000, process.env.IP, function(req, res){
     console.log("Server starter!");
 });
 
