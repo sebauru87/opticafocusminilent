@@ -1,9 +1,19 @@
 body {
     background-color: #000;
-    background-image: url("https://images.unsplash.com/photo-1513758173941-bfbd2e4166f5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2619&q=80");
-    background-size: cover;
+    background-image: url("../img/photo-1513758173941-bfbd2e4166f5.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    max-width:100%;
+    width:auto;
+    height:auto;
+    
     
   }
+
+  img {
+   opacity: 0.5;
+  
+   }
 
 #landing-header {
     color: cyan;

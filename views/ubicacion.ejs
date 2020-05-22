@@ -1,0 +1,56 @@
+<%- include("partials/header") %>
+
+        <div id="margen" class="ui main text container segment">
+            <div class="ui huge header"><h1>Nuestra Ubicacion</h1></div>
+            
+            <!-- <p><iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d253.9606133593042!2d-56.193765720007406!3d-34.906226159056764!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2suy!4v1590082348891!5m2!1ses!2suy" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe></p> -->
+            <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 400px">
+                <!-- <iframe src="https://maps.google.com/maps?q=manhatan&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" -->
+                  <!-- style="border:0" allowfullscreen></iframe> -->
+                  <div id="map"></div>
+              </div>
+        </div>
+        <!--Google map-->
+
+  
+  <!--Google Maps-->
+        
+        <script>
+        function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 18,
+          center: {lat: -34.906099, lng: -56.193685} //34.906099, -56.193685
+        });
+        var geocoder = new google.maps.Geocoder;
+        var infowindow = new google.maps.InfoWindow;
+
+        document.getElementById('submit').addEventListener('click', function() {
+          geocodeLatLng(geocoder, map, infowindow);
+        });
+      }
+
+      function geocodeLatLng(geocoder, map, infowindow) {
+        var input = document.getElementById('latlng').value;
+        var latlngStr = input.split(',', 2);
+        var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+        geocoder.geocode({'location': latlng}, function(results, status) {
+          if (status === 'OK') {
+            if (results[0]) {
+              map.setZoom(16);
+              var marker = new google.maps.Marker({
+                position: latlng,
+                map: map
+              });
+              infowindow.setContent(results[0].formatted_address);
+              infowindow.open(map, marker);
+            } else {
+              window.alert('No results found');
+            }
+          } else {
+            window.alert('Geocoder failed due to: ' + status);
+          }
+        });
+      }
+          </script>
+          <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqMCkaPEy0-WqJ6FnEhxJ-Qe9Qge-2N5w&callback=initMap"></script>
+<%- include("partials/footer") %>
